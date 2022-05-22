@@ -66,17 +66,24 @@ function equalitySelected() {
 function runOperations() {
 let bidmasOps = ["*", "/", "+", "-"];
 
+let divideZero;
+let errorMsg = "No silly!";
+
 // find ops, compute, then decrease the array size. Iterate
 bidmasOps.forEach((op) => {
   while(toOperateON.includes(op)) {
     let x = toOperateON.indexOf(op);
+    
+    // Check for divide by zero
+    if (op == "/" && toOperateON[x+1] == 0) divideZero = true;
     let newValue = operate(toOperateON[x], toOperateON[x-1], toOperateON[x+1]);
     
     // remove three elements from the toOperateON array
     toOperateON.splice(x-1, 3, newValue);
   }
 });
-return parseFloat(toOperateON[0]).toFixed(4);
+// Invalid if /0
+return divideZero? errorMsg: parseFloat(toOperateON[0]).toFixed(4);
 }
 
 
@@ -88,3 +95,7 @@ function clearSelected() {
   temp.length = 0;
   toOperateON.length = 0;
 }
+
+// function checkForDivideZero(op, b) {
+//   if (op == "/" && b == 0) return true;
+// }
