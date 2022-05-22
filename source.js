@@ -25,7 +25,6 @@ const temp = [];
 const toOperateON = [];
 
 function digitSelected(e) {
-  console.log(e);
   if(display.textContent == displayDefault) display.textContent = "";
 
   // Consider the keyboard listner call to this function
@@ -38,11 +37,6 @@ function digitSelected(e) {
   // Store digits in temp
   temp.push(currentDigitSelected);
 };
-
-
-
-
-
 
 const operatorBtns = document.querySelectorAll(".operators > button");
 operatorBtns.forEach((btn) => btn.addEventListener("click", operatorSelected));
@@ -61,17 +55,11 @@ function operatorSelected(e) {
   display.textContent += currentOperatorSelected;
  };
 
-
-
-
-
-
 const equalityBtn = document.querySelector(".operators .equals");
 equalityBtn.addEventListener("click", runOperations);
 
 function runOperations() {
 let bidmasOps = ["*", "/", "+", "-"];
-
 let divideZero;
 let errorMsg = "No silly!";
 
@@ -92,11 +80,6 @@ bidmasOps.forEach((op) => {
 display.textContent = divideZero? errorMsg: parseFloat(toOperateON[0]).toFixed(4);
 }
 
-
-
-
-
-
 const clearBtn = document.querySelector("div .clear");
 clearBtn.addEventListener("click", clearSelected);
 
@@ -106,8 +89,6 @@ function clearSelected() {
   toOperateON.length = 0;
 }
 
-// add button for backspace next to clear
-
 const backspaceBtn = document.querySelector("div .backspace");
 backspaceBtn.addEventListener("click", backspaceSelected);
 
@@ -116,16 +97,6 @@ function backspaceSelected() {
   display.textContent = display.textContent.slice(0, -1);
 }
 
-
-// add event listener for keydown numbers 
-
-// check ascii against list of allowed
-// // if(keystroke()) {
-//   let currentDigitSelected = keystroke();
-// } else usual.
-
-
-
 document.addEventListener("keydown", keySelected);
 
 function keySelected(e) {
@@ -133,15 +104,6 @@ function keySelected(e) {
   let appropAscii = [47,48,49,50,51,52,53,54,55,56,57]
   if (appropAscii.includes(Number(keyCodeFromStroke))) {
     let inputValue = String.fromCharCode(keyCodeFromStroke)
-    console.log(inputValue)
-
     digitSelected(inputValue);
   }  
 }
-
-
-// WORKS FOR NUMBERS, FIND A WAY TO WORK WITH SIGNS AND = *...
-
-//LOOK FOR SPECIAL CHARACTERS
-
-// READ THE WEB PAGE :) WELLDONE TODAY#1!!!
