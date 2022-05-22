@@ -18,10 +18,18 @@ digitBtns.forEach((btn) => btn.addEventListener("click", digitSelected));
 
 const display = document.querySelector("div.display");
 
+const displayDefault = "What you wanna know?"
+display.textContent = displayDefault;
+
 const temp = [];
 const toOperateON = [];
 
+// when digit is clicked, clear the default text and 
+
 function digitSelected(e) {
+
+  if(display.textContent == displayDefault) display.textContent = "";
+
   let currentDigitSelected = this.getAttribute("class");
   display.textContent += currentDigitSelected;
   // Store digits in temp
@@ -78,7 +86,7 @@ const clearBtn = document.querySelector("div .clear");
 clearBtn.addEventListener("click", clearSelected);
 
 function clearSelected() {
-  display.textContent = "What you wanna know?";
+  display.textContent = displayDefault;
   temp.length = 0;
   toOperateON.length = 0;
 }
