@@ -20,25 +20,28 @@ const display = document.querySelector("div.display");
 
 const temp = [];
 const toOperateON = [];
+
 function digitSelected(e) {
   let currentDigitSelected = this.getAttribute("class");
   display.textContent += currentDigitSelected;
+  // Store digits in temp
   temp.push(currentDigitSelected);
 };
 
-// upon operator selection, store the numbers entered as the first string
-// concat the elements of the temp array together
-// clear the temp array ready to be filled by digit selection function
-
-// This function concats the previous digits from the temp array
 function operatorSelected(e) {
   let currentOperatorSelected = this.getAttribute("class");
+
+  // Concat displayed numbers + clear temp array (this f() is async - EventListener)
   let number = Number(temp.join(""));
   temp.length = 0;
-  console.log("number: " + number);
+
   toOperateON.push(number);
   toOperateON.push(currentOperatorSelected);
-  console.log("toOperateOn: " + toOperateON);
+
+  // // Checking functions
+  // console.log("number: " + number);
+  // console.log("toOperateOn: " + toOperateON);
+
   // Add operator to display window
   display.textContent += currentOperatorSelected;
  };
@@ -51,14 +54,21 @@ const equalityBtn = document.querySelectorAll(".operators .equals");
 equalityBtn.forEach((btn) => btn.addEventListener("click", equalitySelected));
 
 function equalitySelected() {
- display.textContent = operate(toOperateON[1], toOperateON[0], toOperateON[2]);
- console.log(operate(toOperateON[1], toOperateON[0], toOperateON[2]));
+  display.textContent = runOperations();
 };
 
+function runOperations() {
+let bidmasOps = ["*", "/", "+", "-"];
 
-// Add event listenre to operation
-// push the operator
-
-// on event listenr run operate
-// use the array[1] in operate(array[1], array[0], array[2])
-// update display
+// find ops, compute, then decrease the array size. Iterate
+bidmasOps.forEach((op) => {
+  while(toOperateON.includes(op)) {
+    let x = toOperateON.indexOf(op);
+    let newValue = operate(toOperateON[x], toOperateON[x-1], toOperateON[x+1]);
+    
+    // remove three elements from the toOperateON array
+    toOperateON.splice(x-1, 3, newValue);
+  }
+});
+return toOperateON[0];
+}
