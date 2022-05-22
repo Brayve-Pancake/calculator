@@ -9,3 +9,10 @@ function divide(a, b) { return a / b; };
 function operate(operator, a, b) {
   operator(a, b);
 }
+
+const digitBtns = document.querySelectorAll(".digits > button");
+digitBtns.forEach((btn) => btn.addEventListener("click", digitSelected));
+
+function digitSelected(e) {
+  return this.getAttribute("class");
+};
