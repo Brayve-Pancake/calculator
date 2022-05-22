@@ -103,3 +103,13 @@ function clearSelected() {
   temp.length = 0;
   toOperateON.length = 0;
 }
+
+// add button for backspace next to clear
+
+const backspaceBtn = document.querySelector("div .backspace");
+backspaceBtn.addEventListener("click", backspaceSelected);
+
+function backspaceSelected() {
+  let undoChar = temp.pop();
+  display.textContent = display.textContent.slice(0, -1);
+}
