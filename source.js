@@ -25,9 +25,11 @@ const temp = [];
 const toOperateON = [];
 
 function digitSelected(e) {
+  console.log(e);
   if(display.textContent == displayDefault) display.textContent = "";
 
-  let currentDigitSelected = this.textContent;
+  // Consider the keyboard listner call to this function
+  let currentDigitSelected = (Number.isInteger(+e))? e: this.textContent;
 
   // Check if the input is floating already
   if(currentDigitSelected == "." && temp.includes(".")) return;
@@ -113,3 +115,33 @@ function backspaceSelected() {
   let undoChar = temp.pop();
   display.textContent = display.textContent.slice(0, -1);
 }
+
+
+// add event listener for keydown numbers 
+
+// check ascii against list of allowed
+// // if(keystroke()) {
+//   let currentDigitSelected = keystroke();
+// } else usual.
+
+
+
+document.addEventListener("keydown", keySelected);
+
+function keySelected(e) {
+  let keyCodeFromStroke = `${e.keyCode}`;
+  let appropAscii = [47,48,49,50,51,52,53,54,55,56,57]
+  if (appropAscii.includes(Number(keyCodeFromStroke))) {
+    let inputValue = String.fromCharCode(keyCodeFromStroke)
+    console.log(inputValue)
+
+    digitSelected(inputValue);
+  }  
+}
+
+
+// WORKS FOR NUMBERS, FIND A WAY TO WORK WITH SIGNS AND = *...
+
+//LOOK FOR SPECIAL CHARACTERS
+
+// READ THE WEB PAGE :) WELLDONE TODAY#1!!!
