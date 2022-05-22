@@ -24,8 +24,6 @@ display.textContent = displayDefault;
 const temp = [];
 const toOperateON = [];
 
-// when digit is clicked, clear the default text and 
-
 function digitSelected(e) {
 
   if(display.textContent == displayDefault) display.textContent = "";
@@ -78,7 +76,7 @@ bidmasOps.forEach((op) => {
     toOperateON.splice(x-1, 3, newValue);
   }
 });
-return toOperateON[0];
+return parseFloat(toOperateON[0]).toFixed(4);
 }
 
 
