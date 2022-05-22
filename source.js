@@ -72,3 +72,13 @@ bidmasOps.forEach((op) => {
 });
 return toOperateON[0];
 }
+
+
+const clearBtn = document.querySelector("div .clear");
+clearBtn.addEventListener("click", clearSelected);
+
+function clearSelected() {
+  display.textContent = "What you wanna know?";
+  temp.length = 0;
+  toOperateON.length = 0;
+}
