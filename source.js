@@ -18,15 +18,12 @@ digitBtns.forEach((btn) => btn.addEventListener("click", digitSelected));
 
 const display = document.querySelector("div.display");
 
-const inputs = [];
 const temp = [];
 const toOperateON = [];
 function digitSelected(e) {
   let currentDigitSelected = this.getAttribute("class");
   display.textContent += currentDigitSelected;
   temp.push(currentDigitSelected);
-  inputs.push(currentDigitSelected);
-  console.log("inputs: " + inputs);
 };
 
 // upon operator selection, store the numbers entered as the first string
